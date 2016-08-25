@@ -1,14 +1,17 @@
 #!/usr/bin/env bash
 
-function build_vanilla() {
-    docker build -t mattgruter/artifactory:latest .
+function build-opensource() {
+	docker build \
+	-f artifactory-dockerfile \
+	-t avoodoo/artifactory:latest \
+	.
 }
 
-function build_onbuild() {
-    cp --no-target-directory --recursive urlrewrite/ onbuild/urlrewrite
-    cat Dockerfile onbuild/trigger > onbuild/Dockerfile
-    docker build -t mattgruter/artifactory:latest-onbuild onbuild
-}
+#function build-pro() {
+#    cp --no-target-directory --recursive urlrewrite/ onbuild/urlrewrite
+#    cat Dockerfile onbuild/trigger > onbuild/Dockerfile
+#    docker build -t avoodoo/artifactory:latest-onbuild onbuild
+#}
 
-build_vanilla
-build_onbuild
+build-opensource
+#build-pro
